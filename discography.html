@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дискография | Daft Punk</title>
+    <link rel="stylesheet" href="">
+</head>
+<style>
+    /* ОБНУЛЕНИЕ И БАЗОВЫЕ СТИЛИ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: #0a0a0c;
+    color: #e2e2e9;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* СЕТКИ ДЛЯ РАЗДЕЛОВ */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* ШАПКА */
+.header {
+    background-color: rgba(10, 10, 12, 0.95);
+    border-bottom: 1px solid #222;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 10px #ff0055;
+}
+
+.nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #ff0055;
+}
+
+.nav .special-link {
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.nav .special-link:hover {
+    background-color: #00ffcc;
+    color: #000;
+}
+
+/* Скрываем чекбокс бургера на десктопе */
+.menu-toggle, .burger-btn {
+    display: none;
+}
+
+/* СЕКЦИИ */
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(10,10,12,0.9)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1920&h=1080&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    letter-spacing: 5px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #aaa;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-alt {
+    background-color: #0f0f14;
+}
+
+.section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    border-left: 4px solid #ff0055;
+    padding-left: 15px;
+}
+
+/* ЗАГЛУШКИ ДЛЯ ИЛЛЮСТРАЦИЙ */
+.img-stub, .card-img, .video-stub, .album-cover, .product-image {
+    background-color: #141419;
+    border: 1px solid #282830;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.img-stub img, .card-img img, .video-stub img, .album-cover img, .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card {
+    background: #111116;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.card h3 { 
+    margin: 15px 0 5px;
+    color: #fff;
+}
+
+/* Альбомы */
+.album-card {
+    background: #111116;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.album-card h3 {
+    margin: 15px 0 5px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.album-card .year {
+    color: #ff0055;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.album-card p {
+    color: #aaa;
+}
+
+/* Видео карточки */
+.video-card {
+    background: #111116;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.video-card h3 {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Товары */
+.product-card {
+    background: #111116;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.product-card h3 {
+    margin: 15px 0 10px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.product-desc {
+    color: #aaa;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.price {
+    color: #00ffcc;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn-cart {
+    background: #ff0055;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-cart:hover {
+    background: #ff3377;
+    transform: translateY(-2px);
+}
+
+/* ФУТЕР */
+.footer {
+    background-color: #050507;
+    padding: 40px 0;
+    border-top: 1px solid #111;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.socials a {
+    color: #666;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.socials a:hover { 
+    color: #fff; 
+}
+
+/* Текст */
+.text-content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* ======================================================= */
+/* АДАПТИВНОСТЬ (ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ) */
+/* ======================================================= */
+@media (max-width: 768px) {
+    /* Перестраиваем сетки в одну колонку */
+    .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Мобильное Бургер-меню */
+    .burger-btn {
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 102;
+    }
+
+    .burger-btn span {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        top: 9px;
+        transition: 0.3s;
+    }
+
+    .burger-btn span::before,
+    .burger-btn span::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        left: 0;
+        transition: 0.3s;
+    }
+
+    .burger-btn span::before {
+        top: -8px;
+    }
+
+    .burger-btn span::after {
+        top: 8px;
+    }
+
+    /* Прячем навигацию и уводим её вверх/вбок */
+    .nav {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        background-color: #0a0a0c;
+        padding: 100px 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        transition: 0.4s ease-in-out;
+        border-bottom: 1px solid #ff0055;
+    }
+
+    .nav a {
+        margin-left: 0;
+        font-size: 20px;
+    }
+
+    /* Логика открытия меню через чекбокс без JS */
+    .menu-toggle:checked ~ .nav {
+        top: 0;
+    }
+
+    /* Изменение футера на мобилке */
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .socials a {
+        margin: 0 10px;
+    }
+    
+    .responsive-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+}
+</style>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container header-container">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="burger-btn">
+                <span></span>
+            </label>
+            <a href="index.html" class="logo">DAFT PUNK</a>
+            <nav class="nav">
+                <a href="index.html#history">История</a>
+                <a href="index.html#members">Состав</a>
+                <a href="index.html#media">Видео</a>
+                <a href="discography.html" class="special-link">Дискография</a>
+                <a href="shop.html">Мерч</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Контент -->
+    <section class="section" style="padding-top: 120px;">
+        <div class="container">
+            <h2 class="section-title">Студийные альбомы</h2>
+            <div class="grid-2">
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="https://avatars.mds.yandex.net/get-entity_search/44099/155051992/S600xU_2x" alt="Homework (1997)" class="responsive-img">
+                    </div>
+                    <h3>Homework</h3>
+                    <p class="year">1997</p>
+                    <p>Дебютный альбом, перевернувший представление о хаус-музыке.</p>
+                </div>
+                
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="https://avatars.mds.yandex.net/get-entity_search/60958/168174601/S600xU_2x" alt="Discovery (2001)" class="responsive-img">
+                    </div>
+                    <h3>Discovery</h3>
+                    <p class="year">2001</p>
+                    <p>Лонгплей, подаривший миру хиты One More Time и Harder, Better, Faster, Stronger.</p>
+                </div>
+                
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="https://avatars.mds.yandex.net/get-entity_search/122335/167852733/S600xU_2x" alt="Human After All (2005)" class="responsive-img">
+                    </div>
+                    <h3>Human After All</h3>
+                    <p class="year">2005</p>
+                    <p>Более жесткое, индустриальное и минималистичное звучание.</p>
+                </div>
+                
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="https://avatars.mds.yandex.net/get-entity_search/2369898/830918507/S600xU_2x" alt="Random Access Memories (2013)" class="responsive-img">
+                    </div>
+                    <h3>Random Access Memories</h3>
+                    <p class="year">2013</p>
+                    <p>Грандиозный финал. 5 премий Грэмми, включая «Альбом года».</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="copyright">© 2026 Daft Punk Fan Project. Дополнительная страница.</div>
+        </div>
+    </footer>
+</body>
+</html>
